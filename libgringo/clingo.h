@@ -172,21 +172,21 @@ char const *clingo_signature_name(clingo_signature_t signature);
 //! @param[in] signature the target signature
 //! @return the arity of the signature
 uint32_t clingo_signature_arity(clingo_signature_t signature);
-//! Weather the signature is positive (is not classically negated).
+//! Whether the signature is positive (is not classically negated).
 //!
 //! @param[in] signature the target signature
-//! @return weather the signature has no sign
+//! @return whether the signature has no sign
 bool clingo_signature_is_positive(clingo_signature_t signature);
-//! Weather the signature is negative (is classically negated).
+//! Whether the signature is negative (is classically negated).
 //!
 //! @param[in] signature the target signature
-//! @return weather the signature has a sign
+//! @return whether the signature has a sign
 bool clingo_signature_is_negative(clingo_signature_t signature);
 //! Check if two signatures are equal.
 //!
 //! @param[in] a first signature
 //! @param[in] b second signature
-//! @return weather a == b
+//! @return whether a == b
 bool clingo_signature_is_equal_to(clingo_signature_t a, clingo_signature_t b);
 //! Check if a signature is less than another signature.
 //!
@@ -195,7 +195,7 @@ bool clingo_signature_is_equal_to(clingo_signature_t a, clingo_signature_t b);
 //!
 //! @param[in] a first signature
 //! @param[in] b second signature
-//! @return weather a < b
+//! @return whether a < b
 bool clingo_signature_is_less_than(clingo_signature_t a, clingo_signature_t b);
 //! Calculate a hash code of a signature.
 //!
@@ -225,7 +225,7 @@ typedef uint64_t clingo_symbol_t;
 //! Represents a symbolic literal.
 typedef struct clingo_symbolic_literal {
     clingo_symbol_t symbol; //!< the associated symbol (must be a function)
-    bool positive;          //!< weather the literal has a sign
+    bool positive;          //!< whether the literal has a sign
 } clingo_symbolic_literal_t;
 
 //! @name Symbol Construction Functions
@@ -257,7 +257,7 @@ clingo_error_t clingo_symbol_create_string(char const *string, clingo_symbol_t *
 //! Note that this is just a shortcut for clingo_symbol_create_function() with empty arguments.
 //!
 //! @param[in] name the name
-//! @param[in] positive weather the symbol has a classical negation sign
+//! @param[in] positive whether the symbol has a classical negation sign
 //! @param[out] symbol the resulting symbol
 //! @return
 //! - ::clingo_error_success
@@ -270,7 +270,7 @@ clingo_error_t clingo_symbol_create_id(char const *name, bool positive, clingo_s
 //! @param[in] name the name of the function
 //! @param[in] arguments the arguments of the function
 //! @param[in] arguments_size the number of arguments
-//! @param[in] positive weather the symbol has a classical negation sign
+//! @param[in] positive whether the symbol has a classical negation sign
 //! @param[out] symbol the resulting symbol
 //! @return
 //! - ::clingo_error_success
@@ -365,7 +365,7 @@ clingo_error_t clingo_symbol_to_string(clingo_symbol_t symbol, char *string, siz
 //!
 //! @param[in] a first symbol
 //! @param[in] b second symbol
-//! @return weather a == b
+//! @return whether a == b
 bool clingo_symbol_is_equal_to(clingo_symbol_t a, clingo_symbol_t b);
 //! Check if a symbol is less than another symbol.
 //!
@@ -375,7 +375,7 @@ bool clingo_symbol_is_equal_to(clingo_symbol_t a, clingo_symbol_t b);
 //!
 //! @param[in] a first symbol
 //! @param[in] b second symbol
-//! @return weather a < b
+//! @return whether a < b
 bool clingo_symbol_is_less_than(clingo_symbol_t a, clingo_symbol_t b);
 //! Calculate a hash code of a symbol.
 //!
@@ -518,11 +518,11 @@ clingo_error_t clingo_model_symbols_size(clingo_model_t *model, clingo_show_type
 //!
 //! @see clingo_model_symbols_size()
 clingo_error_t clingo_model_symbols(clingo_model_t *model, clingo_show_type_bitset_t show, clingo_symbol_t *symbols, size_t size);
-//! Constant time lookup to test weather an atom is in a model.
+//! Constant time lookup to test whether an atom is in a model.
 //!
 //! @param[in] model the target
 //! @param[in] atom the atom to lookup
-//! @param[out] contained weather the atom is contained
+//! @param[out] contained whether the atom is contained
 //! @return
 //! - ::clingo_error_success
 clingo_error_t clingo_model_contains(clingo_model_t *model, clingo_symbol_t atom, bool *contained);
@@ -546,10 +546,10 @@ clingo_error_t clingo_model_cost_size(clingo_model_t *model, size_t *size);
 //! @see clingo_model_cost_size()
 //! @see clingo_model_optimality_proven()
 clingo_error_t clingo_model_cost(clingo_model_t *model, int64_t *costs, size_t size);
-//! Weather the optimality of a model has been proven.
+//! Whether the optimality of a model has been proven.
 //!
 //! @param[in] model the target
-//! @param[out] proven weather the optimality has been proven
+//! @param[out] proven whether the optimality has been proven
 //! @return
 //! - ::clingo_error_success
 //!
@@ -718,7 +718,7 @@ clingo_error_t clingo_solve_async_get(clingo_solve_async_t *async, clingo_solve_
 //!
 //! @param[in] handle the target
 //! @param[in] timeout the maximum time to wait
-//! @param[out] result weather the search is still running
+//! @param[out] result whether the search is still running
 //! @return
 //! - ::clingo_error_success
 //! - ::clingo_error_bad_alloc
@@ -1689,7 +1689,7 @@ typedef clingo_error_t clingo_ground_callback_t (clingo_location_t location, cha
 //!
 //! @param[in] model the current model
 //! @param[in] data userdata of the callback
-//! @param[out] goon weather to continue search
+//! @param[out] goon whether to continue search
 //! @return error code
 //!
 //! @see clingo_control_solve()
@@ -1876,7 +1876,7 @@ clingo_error_t clingo_control_release_external(clingo_control_t *control, clingo
 //! @param[in] control the target
 //! @param[in] propagator the propagator
 //! @param[in] data user data passed to the propagator functions
-//! @param[in] sequential weather the propagator should be called sequentially
+//! @param[in] sequential whether the propagator should be called sequentially
 //! @return
 //! - ::clingo_error_success
 //! - ::clingo_error_bad_alloc
@@ -1923,7 +1923,7 @@ clingo_error_t clingo_control_configuration(clingo_control_t *control, clingo_co
 //! Note that initially the enumeration assumption is enabled.
 //!
 //! @param[in] control the target
-//! @param[in] enable weather to enable the assumption
+//! @param[in] enable whether to enable the assumption
 //! @return
 //! - ::clingo_error_success
 clingo_error_t clingo_control_use_enumeration_assumption(clingo_control_t *control, bool enable);
@@ -1944,7 +1944,7 @@ clingo_error_t clingo_control_get_const(clingo_control_t *control, char const *n
 //!
 //! @param[in] control the target
 //! @param[in] name the name of the constant
-//! @param[out] exists weather a matching constant definition exists
+//! @param[out] exists whether a matching constant definition exists
 //! @return
 //! - ::clingo_error_success
 //! - ::clingo_error_runtime if constant definition does not exist
